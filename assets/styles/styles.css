@@ -38,11 +38,15 @@
 #doneBtn {
   width: 20%;
   height: 6%;
+  background-color: black;
+  border-color: black;
+  color: white;
 }
 
 .displayField {
   width: 60%;
   height: 20%;
+  max-height: fit-content;
   border: 1px solid green;
   border-color: green;
   background-color: green;

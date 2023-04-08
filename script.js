@@ -2,19 +2,45 @@
 const weight = document.getElementById('weight-input');
 const items = document.getElementById('items');
 const doneBtn = document.getElementById('doneBtn');
-const displayField = document.getElementById('display-field');
+const display = document.querySelector('.displayField');
 
-const knapsack = {
+const knapSack = {
     capacity: 0,
     items:[],
     weight: 0,
     value: 0
 }
 
-doneBtn.addEventListener('click', () => {
-    knapsack.capacity = weight.value;
-    weight.disabled = true
-    console.log(knapsack)
+doneBtn.addEventListener("click", () => {
+    if (weight.value == "") {
+        weight.style.border = "2px solid red"
+        weight.placeholder = "please enter a weigth"
+    }else {
+        knapSack.capacity = weight.value;
+        weight.disabled = true;
+
+
+        items.addEventListener("change", () => {
+            for (let i = 0; i < arr.length; i++){
+                if (items.value == arr[i].name){
+                    if (arr[i].weight + knapSack.weight < knapSack.capacity) {
+                        knapSack.items.push(arr[i]);
+                        knapSack.weight += arr[i].weight;
+                        knapSack.value += arr[i].value;
+                    } else if (arr[i].weight + knapSack.weight == knapSack.capacity) {
+                        display.style.background = "red";
+                        items.disabled = true
+                    } else {
+                        alert ('This item will overfill the knapSack')
+                    }console.log(items.value)
+
+                }
+            }
+            display.innerHTML = knapSack.weight + ' ' + "is the weight" + ',' + knapSack.value + ' ' + 'is the vlaue';
+        })
+        display.innerHTML += knapSack.weight + ' ' + "is the weight" + ',' + knapSack.value + ' ' + 'is the vlaue';
+    }
+    
 })
 
 const arr = [
@@ -31,6 +57,7 @@ const arr = [
     {name: 'Grapes', weight:22, value:200}
 ]
 
+console.log(knapSack)
 
 
 
